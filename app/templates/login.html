@@ -29,6 +29,11 @@
                             style="background-color: #21262d; height: 45px; border-radius: 8px;">
                     </div>
 
+                    <div class="text-center mt-4">
+                        <p class="mb-1 text-white">Esqueceu sua senha? <a href="{% url 'alterar_senha' %}"
+                                class="text-decoration-none fw-bold" style="color: #00d4ff;">Clique aqui</a></p>
+                    </div><br>
+
                     <button type="submit" class="btn fw-bold w-100 py-2 shadow-sm btn-login-tech"
                         style="background-color: #00d4ff; color: #000; border: none; border-radius: 8px; height: 48px; transition: all 0.2s ease-in-out;">
                         ENTRAR NA TECHSTORE
@@ -39,7 +44,8 @@
                     <p class="mb-1 text-white">Não possui conta?
                         <a href="{% url 'cadastro' %}" class="fw-bold text-decoration-none"
                             style="color: #00d4ff;">Cadastre-se agora!</a>
-                    </p>
+                    </p><br>
+
                     <p class="small text-secondary mt-2">
                         Dificuldades no acesso? <br>
                         <span style="color: #8b949e;">Entre em contato com o nosso suporte.</span>

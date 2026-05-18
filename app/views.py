@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.db.models import Q
 from django.db import IntegrityError
@@ -390,6 +390,35 @@ def logout_view(request):
     logout(request)
     messages.info(request, "Você saiu com sucesso.")
     return redirect('login')
+
+@login_required
+def alterar_senha(request):
+    if request.method == 'POST':
+        nova_senha = request.POST.get('nova_senha')
+        confirmar_senha = request.POST.get('confirmar_senha')
+
+        if not nova_senha or not confirmar_senha:
+            messages.error(request, 'Por favor, preencha todos os campos.')
+            return redirect('alterar_senha')
+
+        if nova_senha != confirmar_senha:
+            messages.error(request, 'As senhas não coincidem. Tente novamente.')
+            return redirect('alterar_senha')
+
+        if len(nova_senha) < 8:
+            messages.error(request, 'A nova senha deve conter pelo menos 8 caracteres.')
+            return redirect('alterar_senha')
+
+        user = request.user
+        user.set_password(nova_senha)
+        user.save()
+
+        update_session_auth_hash(request, user)
+
+        messages.success(request, 'Sua senha foi alterada com sucesso!')
+        return redirect('dashboard')
+
+    return render(request, 'alterar_senha.html')
 
 def atendimento_view(request):
     perfil = getattr(request.user, 'perfil', None) 
