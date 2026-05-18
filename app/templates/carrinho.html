@@ -7,9 +7,9 @@
         <p class="text-white-50 fs-6 fw-normal">Revise seus itens antes de finalizar a compra.</p>
     </h3><br>
 
+    {% if carrinho %}
     <div class="p-4 mb-5 shadow-lg" style="background-color: #1a1d21; border-radius: 15px; border: 1px solid #333;">
 
-        {% if carrinho %}
         <div class="text-center py-2 mb-4 fw-bolder"
             style="background-color: #00d4ff; border-radius: 8px; color: #000; letter-spacing: 1px; font-size: 0.9rem;">
             <i class="bi bi-bag-check-fill me-2"></i> ITENS SELECIONADOS
@@ -113,20 +113,20 @@
                 FINALIZAR COMPRA <i class="bi bi-arrow-right-circle-fill ms-2"></i>
             </a>
         </div>
-
-        {% else %}
-        <div class="text-center py-5"
-            style="background-color: #21262d; border-radius: 12px; border: 1px dashed #30363d;">
-            <i class="bi bi-cart-x mb-3 d-block" style="font-size: 4rem; color: #30363d;"></i>
-            <h4 class="text-white fw-bold mb-2">Seu carrinho está vazio</h4>
-            <p class="text-white-50 mb-4">Parece que você ainda não adicionou nenhum produto.</p>
-            <a href="{% url 'produtos' %}" class="btn fw-bold px-4 shadow"
-                style="background-color: #00d4ff; color: black; border-radius: 10px; height: 45px; display: inline-flex; align-items: center;">
-                <i class="bi bi-search me-2"></i> EXPLORAR PRODUTOS
-            </a>
-        </div>
-        {% endif %}
     </div>
+
+    {% else %}
+    <div class="text-center py-5 shadow-lg mb-5" style="background-color: #21262d; border-radius: 12px;">
+        <i class="bi bi-cart-x mb-3 d-block" style="font-size: 4rem; color: #30363d;"></i>
+        <h4 class="text-white fw-bold mb-2">Seu carrinho está vazio</h4>
+        <p class="text-white-50 mb-4">Parece que você ainda não adicionou nenhum produto.</p><br>
+        <p class="text-white-50 mb-4">Explore nossa loja e encontre seus itens preferidos!</p>
+        <a href="{% url 'produtos' %}" class="btn fw-bold px-4 shadow"
+            style="background-color: #00d4ff; color: black; border-radius: 10px; height: 45px; display: inline-flex; align-items: center;">
+            <i class="bi bi-search me-2"></i> EXPLORAR PRODUTOS
+        </a>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}
