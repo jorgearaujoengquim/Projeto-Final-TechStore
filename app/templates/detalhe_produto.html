@@ -8,10 +8,12 @@
             <div class="position-relative p-3"
                 style="background-color: #1a1d21; border-radius: 24px; border: 1px solid #2a2f35;">
 
-                <span class="badge position-absolute text-uppercase fw-bold"
-                    style="top: 25px; right: 25px; background-color: #00d4ff; color: #161b22; font-size: 0.75rem; letter-spacing: 0.5px; z-index: 2;">
-                    Smartphones
-                </span>
+                <div class="mb-3">
+                    <span class="badge px-2 py-1"
+                        style="background-color: #00d4ff; color: #161b22; border-radius: 5px;">
+                        {{ produto.get_categoria_display|default:"Geral" }}
+                    </span>
+                </div>
 
                 <div class="position-absolute" style="top: 25px; left: 25px; z-index: 2;">
                     <div class="wrapper-coracao">

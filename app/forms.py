@@ -50,7 +50,7 @@ class CadastroForm(UserCreationForm):
                 endereco=endereco_completo,
                 cidade=self.cleaned_data['cidade'],
                 estado=self.cleaned_data['estado'],
-        )
+            )
         return user
 
 class UserUpdateForm(forms.ModelForm):
@@ -58,27 +58,27 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control bg-light'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control bg-light'}),
+            'username': forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control bg-dark text-white border-secondary'}),
         }
 
 class PerfilUpdateForm(forms.ModelForm):
     numero = forms.CharField(
         max_length=20, 
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control bg-light', 'id': 'id_numero'})
+        widget=forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_numero'})
     )
 
     class Meta:
         model = Perfil
         fields = ['foto', 'telefone', 'cep', 'endereco', 'cidade', 'estado']
         widgets = {
-            'foto': forms.FileInput(attrs={'class': 'form-control bg-light', 'id': 'id_foto'}),
-            'telefone': forms.TextInput(attrs={'class': 'form-control bg-light', 'id': 'id_telefone'}),
-            'cep': forms.TextInput(attrs={'class': 'form-control bg-light', 'id': 'id_cep'}),
-            'endereco': forms.TextInput(attrs={'class': 'form-control bg-light', 'id': 'id_logradouro'}),
-            'cidade': forms.TextInput(attrs={'class': 'form-control bg-light', 'id': 'id_cidade', 'readonly': 'readonly'}),
-            'estado': forms.TextInput(attrs={'class': 'form-control bg-light', 'id': 'id_estado', 'readonly': 'readonly'}),
+            'foto': forms.FileInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_foto'}),
+            'telefone': forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_telefone'}),
+            'cep': forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_cep'}),
+            'endereco': forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_endereco'}),
+            'cidade': forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_cidade', 'readonly': 'readonly'}),
+            'estado': forms.TextInput(attrs={'class': 'form-control bg-dark text-white border-secondary', 'id': 'id_estado', 'readonly': 'readonly'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -88,7 +88,7 @@ class PerfilUpdateForm(forms.ModelForm):
                 partes = self.instance.endereco.split(' - Nº ')
                 self.initial['endereco'] = partes[0]
                 self.initial['numero'] = partes[1]
-            
+
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
@@ -106,9 +106,9 @@ class AvaliacaoForm(forms.ModelForm):
         model = Avaliacao
         fields = ['produto', 'nota', 'comentario']
         widgets = {
-            'nota': forms.Select(attrs={'class': 'form-select'}),
+            'nota': forms.Select(attrs={'class': 'form-select bg-dark text-white border-secondary'}),
             'comentario': forms.Textarea(attrs={
-                'class': 'form-control', 
+                'class': 'form-control bg-dark text-white border-secondary', 
                 'rows': 3, 
                 'placeholder': 'Conte sua experiência com o produto...'
             }),

@@ -319,6 +319,13 @@ def dashboard_view(request):
             perfil_instance.save()
             messages.success(request, 'Seu perfil foi atualizado com sucesso!')
             return redirect('dashboard')
+        else:
+            messages.error(request, 'Erro ao atualizar o perfil. Verifique se há campos inválidos.')
+            print("=== ERROS NO FORMULÁRIO DE USUÁRIO ===")
+            print(u_form.errors)
+            print("=== ERROS NO FORMULÁRIO DE PERFIL ===")
+            print(p_form.errors)
+            
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = PerfilUpdateForm(instance=perfil)
